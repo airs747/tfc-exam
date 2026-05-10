@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Future of Capitalism — Exam Materials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ffffff;
+    --paper-deep: #f3f7fb;
+    --vu-blue: #0077b3;
+    --vu-blue-deep: #005f91;
+    --vu-blue-soft: #e6f2f9;
+    --ink: #0a1626;
+    --ink-soft: #3d4a5c;
+    --ink-faint: #8a94a3;
+    --rule: #d9e3ec;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Inter Tight", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    line-height: 1.5;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at top right, rgba(0,119,179,0.05), transparent 55%),
+      radial-gradient(ellipse at bottom left, rgba(0,119,179,0.04), transparent 60%);
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 48px 100px;
+  }
+
+  /* Top bar with logo */
+  .topbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 36px;
+  }
+
+  .topbar img {
+    height: 56px;
+    width: auto;
+    display: block;
+  }
+
+  /* Header */
+  header {
+    border-bottom: 2px solid var(--vu-blue);
+    padding-bottom: 36px;
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: end;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--vu-blue);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--vu-blue);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    font-weight: 400;
+  }
+
+  .countdown {
+    text-align: right;
+    border-left: 1px solid var(--rule);
+    padding-left: 32px;
+    min-width: 200px;
+  }
+
+  .countdown-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .countdown-number {
+    font-family: var(--serif);
+    font-size: 4.5rem;
+    line-height: 1;
+    font-weight: 500;
+    color: var(--vu-blue);
+  }
+
+  .countdown-unit {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .countdown-date {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  /* Notes */
+  .top-note {
+    background: var(--vu-blue);
+    color: #ffffff;
+    padding: 18px 24px;
+    margin-bottom: 24px;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+  }
+
+  .note {
+    background: var(--vu-blue-soft);
+    border-left: 3px solid var(--vu-blue);
+    padding: 16px 24px;
+    margin-bottom: 56px;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+  }
+
+  /* Grid of cards */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+  }
+
+  .card {
+    background: #ffffff;
+    border: 1px solid var(--rule);
+    padding: 30px 30px 26px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px -12px rgba(0,95,145,0.22);
+    border-color: var(--vu-blue);
+  }
+
+  .card.exam {
+    background: linear-gradient(180deg, #ffffff 0%, var(--vu-blue-soft) 100%);
+    border: 1px solid var(--vu-blue);
+    box-shadow: 0 6px 20px -10px rgba(0,95,145,0.18);
+  }
+
+  .card.exam:hover {
+    border-color: var(--vu-blue-deep);
+  }
+
+  .week-mark {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .week-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  .week-num span {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: var(--vu-blue);
+    margin-left: 6px;
+  }
+
+  .card.exam .week-num span {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--vu-blue);
+    color: #ffffff;
+    padding: 4px 10px;
+    margin-left: 0;
+    font-weight: 600;
+  }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 22px;
+    letter-spacing: -0.01em;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    list-style: none;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 0;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px dotted var(--rule);
+    transition: padding-left 0.2s ease, color 0.2s ease;
+  }
+
+  .item:last-child { border-bottom: none; }
+
+  .item:hover {
+    padding-left: 6px;
+    color: var(--vu-blue);
+  }
+
+  .item-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-faint);
+    transition: color 0.2s ease;
+  }
+
+  .item:hover .item-icon { color: var(--vu-blue); }
+
+  .item-icon svg { width: 100%; height: 100%; }
+
+  .item-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .item-label {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .item-meta {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  .item-arrow {
+    flex-shrink: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-faint);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .item:hover .item-arrow {
+    opacity: 1;
+    transform: translateX(2px);
+    color: var(--vu-blue);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-text {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+
+  .folder-link {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--vu-blue);
+    padding-bottom: 3px;
+    transition: color 0.2s ease;
+    font-weight: 600;
+  }
+
+  .folder-link:hover { color: var(--vu-blue); }
+
+  /* Stagger reveal on load */
+  .card {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise 0.6s ease forwards;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.12s; }
+  .card:nth-child(3) { animation-delay: 0.19s; }
+  .card:nth-child(4) { animation-delay: 0.26s; }
+  .card:nth-child(5) { animation-delay: 0.33s; }
+  .card:nth-child(6) { animation-delay: 0.40s; }
+  .card:nth-child(7) { animation-delay: 0.47s; }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .page { padding: 28px 24px 70px; }
+    .topbar img { height: 44px; }
+    header {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .countdown {
+      text-align: left;
+      border-left: none;
+      border-top: 1px solid var(--rule);
+      padding-left: 0;
+      padding-top: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+    .countdown-number { font-size: 3rem; }
+    .countdown-unit { margin-top: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <img src="vu-logo.png" alt="Vrije Universiteit Amsterdam">
+  </div>
+
+  <header>
+    <div>
+      <div class="eyebrow">MSc Finance · Exam Materials</div>
+      <h1>The Future <em>of</em> Capitalism</h1>
+      <div class="subtitle">All study material for the exam, in one place.</div>
+    </div>
+    <div class="countdown">
+      <div class="countdown-label">Exam in</div>
+      <div class="countdown-number" id="days">—</div>
+      <div class="countdown-unit" id="unit">days</div>
+      <div class="countdown-date">21 May 2026</div>
+    </div>
+  </header>
+
+  <div class="top-note">
+    Some papers are provided here because I had them anyway. But it&rsquo;s not complete. Check Exam material yourself please.
+  </div>
+
+  <div class="note">
+    Canvas is currently down. Click any item below to open the file preview in Dropbox; from there you can read or download.
+  </div>
+
+  <div class="grid">
+
+    <!-- Exam prep -->
+    <article class="card exam">
+      <div class="week-mark">
+        <div class="week-num"><span>Exam Preparation</span></div>
+      </div>
+      <h2 class="card-title">Mock &amp; Exam Material</h2>
+      <ul class="items">
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=Exam+prep+-+FutureOfCapitalism_MockMidterm_A_v3.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span>
+            <span class="item-text"><span class="item-label">Mock midterm A</span><span class="item-meta">Practice exam, version 3 · 215 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=Exam+prep+-+TFC+2026+exam+material.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h4"/></svg></span>
+            <span class="item-text"><span class="item-label">TFC 2026 exam material</span><span class="item-meta">Overview &amp; scope · 104 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+    <!-- Week 1 -->
+    <article class="card">
+      <div class="week-mark">
+        <div class="week-num">Week <span>01</span></div>
+      </div>
+      <h2 class="card-title">Introduction &amp; Marx</h2>
+      <ul class="items">
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=1+Lecture+1+SLIDES+-+Introduction.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
+            <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Introduction · 6.1 MB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=1+Teaching+note+2a+-+testing_Marx.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
+            <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">Testing Marx · 187 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=1+Heilbroner+H6+Marx+Inexorable+system.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
+            <span class="item-text"><span class="item-label">Paper</span><span class="item-meta">Heilbroner · Marx, the inexorable system · 1.8 MB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+    <!-- Week 2 -->
+    <article class="card">
+      <div class="week-mark">
+        <div class="week-num">Week <span>02</span></div>
+      </div>
+      <h2 class="card-title">The Finance View</h2>
+      <ul class="items">
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=2+Lecture+SLIDES+-+the+Finance+view.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
+            <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">The Finance view · 3.3 MB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=2+Teaching+note+2b+-+The_Finance_view.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
+            <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">The Finance view · 0.9 MB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+    <!-- Week 3 -->
+    <article class="card">
+      <div class="week-mark">
+        <div class="week-num">Week <span>03</span></div>
+      </div>
+      <h2 class="card-title">Economic Nationalism</h2>
+      <ul class="items">
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=3+Lecture+SLIDES+-+Economic+nationalism.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
+            <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Economic nationalism · 8.1 MB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=3+Teaching+note+Economic_nationalism.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
+            <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">Economic nationalism · 168 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+    <!-- Week 4 -->
+    <article class="card">
+      <div class="week-mark">
+        <div class="week-num">Week <span>04</span></div>
+      </div>
+      <h2 class="card-title">Human Capitalism</h2>
+      <ul class="items">
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=4+lecture+slides+Human+Capitalism.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
+            <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Human Capitalism · 8.7 MB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=4+acemoglu-restrepo-2019-automation-and-new-tasks-how-technology-displaces-and-reinstates-labor.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
+            <span class="item-text"><span class="item-label">Paper</span><span class="item-meta">Acemoglu &amp; Restrepo (2019) · Automation and new tasks · 686 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+    <!-- Week 5 -->
+    <article class="card">
+      <div class="week-mark">
+        <div class="week-num">Week <span>05</span></div>
+      </div>
+      <h2 class="card-title">Natural &amp; Social World</h2>
+      <ul class="items">
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=5+Lecture+5+-+Natural+and+social+world.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
+            <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Natural and social world · 11.0 MB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=5+Teaching_note___The_Noah_s_Ark_problem.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
+            <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">The Noah&rsquo;s Ark problem · 290 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=5+Weitzman+1998+-+Noahs+ark+problem.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
+            <span class="item-text"><span class="item-label">Paper</span><span class="item-meta">Weitzman (1998) · Noah&rsquo;s ark problem · 543 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+    <!-- Week 6 -->
+    <article class="card">
+      <div class="week-mark">
+        <div class="week-num">Week <span>06</span></div>
+      </div>
+      <h2 class="card-title">Capitalism &amp; the Future of Democracy</h2>
+      <ul class="items">
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=6+Lecture+6+-+capitalism+and+the+future+of+democracy.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
+            <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Capitalism &amp; democracy · 5.5 MB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=6_Teaching_note___capitalism_and_democracy.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
+            <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">Capitalism and democracy · 177 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&preview=6+Rodrik+JEP+2010-how-far-will-international-economic-integration-go.pdf" target="_blank" rel="noopener">
+            <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
+            <span class="item-text"><span class="item-label">Paper</span><span class="item-meta">Rodrik (2010) · How far will international integration go · 126 KB</span></span>
+            <span class="item-arrow">→</span>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+  </div>
+
+  <footer>
+    <div class="footer-text">Good luck with your preparation.</div>
+    <a class="folder-link" href="https://www.dropbox.com/scl/fo/8t92se4wkyjjyntb04lvs/AId5iXjUgqjo9XzL8AvSJ3A?rlkey=2zf9v7j5b2xeox7rd0wx5i9j1&dl=0" target="_blank" rel="noopener">Open full folder ↗</a>
+  </footer>
+
+</div>
+
+<script>
+  (function() {
+    var examDate = new Date('2026-05-21T00:00:00');
+    var now = new Date();
+    var diffMs = examDate - now;
+    var diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+    var numEl = document.getElementById('days');
+    var unitEl = document.getElementById('unit');
+    if (diffDays > 1) {
+      numEl.textContent = diffDays;
+      unitEl.textContent = 'days';
+    } else if (diffDays === 1) {
+      numEl.textContent = '1';
+      unitEl.textContent = 'day';
+    } else if (diffDays === 0) {
+      numEl.textContent = 'today';
+      numEl.style.fontSize = '2.4rem';
+      unitEl.textContent = '';
+    } else {
+      numEl.textContent = '—';
+      unitEl.textContent = 'concluded';
+    }
+  })();
+</script>
+</body>
+</html>
