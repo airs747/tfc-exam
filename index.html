@@ -396,6 +396,122 @@
     .countdown-number { font-size: 3rem; }
     .countdown-unit { margin-top: 0; }
   }
+
+
+  .items li {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .items li:last-child { border-bottom: none; }
+  .items li .item { border-bottom: none; flex: 1; }
+
+  /* Download button on each item */
+  .item-download {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-faint);
+    transition: background 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .item-download:hover {
+    background: var(--vu-blue-soft);
+    color: var(--vu-blue);
+  }
+  .item-download svg { width: 16px; height: 16px; }
+
+  /* Modal viewer */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 22, 38, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    padding: 24px;
+    animation: modalIn 0.2s ease;
+  }
+  .modal.open { display: flex; }
+
+  @keyframes modalIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 4px 14px;
+    color: #fff;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #fff;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .modal-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s ease;
+  }
+  .modal-btn:hover { background: rgba(255,255,255,0.2); }
+  .modal-close {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .modal-frame {
+    flex: 1;
+    width: 100%;
+    background: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  body.modal-open { overflow: hidden; }
+
+  @media (max-width: 720px) {
+    .modal { padding: 12px; }
+    .modal-title { font-size: 1rem; }
+    .modal-btn { padding: 6px 10px; font-size: 11px; }
+  }
 </style>
 </head>
 <body>
@@ -436,20 +552,16 @@
       </div>
       <h2 class="card-title">Mock &amp; Exam Material</h2>
       <ul class="items">
-        <li>
-          <a class="item" href="pdf/Exam%20prep%20-%20FutureOfCapitalism_MockMidterm_A_v3.pdf" target="_blank" rel="noopener">
+        <li><a class="item" href="pdf/Exam%20prep%20-%20FutureOfCapitalism_MockMidterm_A_v3.pdf" data-pdf="pdf/Exam%20prep%20-%20FutureOfCapitalism_MockMidterm_A_v3.pdf" data-title="Mock midterm A — Practice exam, version 3 · 215 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span>
             <span class="item-text"><span class="item-label">Mock midterm A</span><span class="item-meta">Practice exam, version 3 · 215 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/Exam%20prep%20-%20TFC%202026%20exam%20material.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/Exam%20prep%20-%20FutureOfCapitalism_MockMidterm_A_v3.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/Exam%20prep%20-%20TFC%202026%20exam%20material.pdf" data-pdf="pdf/Exam%20prep%20-%20TFC%202026%20exam%20material.pdf" data-title="TFC 2026 exam material — Overview &amp; scope · 104 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h4"/></svg></span>
             <span class="item-text"><span class="item-label">TFC 2026 exam material</span><span class="item-meta">Overview &amp; scope · 104 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
+            
+          </a><a class="item-download" href="pdf/Exam%20prep%20-%20TFC%202026%20exam%20material.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
       </ul>
     </article>
 
@@ -460,27 +572,21 @@
       </div>
       <h2 class="card-title">Introduction &amp; Marx</h2>
       <ul class="items">
-        <li>
-          <a class="item" href="pdf/1%20Lecture%201%20SLIDES%20-%20Introduction.pdf" target="_blank" rel="noopener">
+        <li><a class="item" href="pdf/1%20Lecture%201%20SLIDES%20-%20Introduction.pdf" data-pdf="pdf/1%20Lecture%201%20SLIDES%20-%20Introduction.pdf" data-title="Lecture slides — Introduction · 6.1 MB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
             <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Introduction · 6.1 MB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/1%20Teaching%20note%202a%20-%20testing_Marx.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/1%20Lecture%201%20SLIDES%20-%20Introduction.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/1%20Teaching%20note%202a%20-%20testing_Marx.pdf" data-pdf="pdf/1%20Teaching%20note%202a%20-%20testing_Marx.pdf" data-title="Teaching note — Testing Marx · 187 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
             <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">Testing Marx · 187 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/1%20Heilbroner%20H6%20Marx%20Inexorable%20system.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/1%20Teaching%20note%202a%20-%20testing_Marx.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/1%20Heilbroner%20H6%20Marx%20Inexorable%20system.pdf" data-pdf="pdf/1%20Heilbroner%20H6%20Marx%20Inexorable%20system.pdf" data-title="Paper — Heilbroner · Marx, the inexorable system · 1.8 MB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
             <span class="item-text"><span class="item-label">Paper</span><span class="item-meta">Heilbroner · Marx, the inexorable system · 1.8 MB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
+            
+          </a><a class="item-download" href="pdf/1%20Heilbroner%20H6%20Marx%20Inexorable%20system.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
       </ul>
     </article>
 
@@ -491,20 +597,16 @@
       </div>
       <h2 class="card-title">The Finance View</h2>
       <ul class="items">
-        <li>
-          <a class="item" href="pdf/2%20Lecture%20SLIDES%20-%20the%20Finance%20view.pdf" target="_blank" rel="noopener">
+        <li><a class="item" href="pdf/2%20Lecture%20SLIDES%20-%20the%20Finance%20view.pdf" data-pdf="pdf/2%20Lecture%20SLIDES%20-%20the%20Finance%20view.pdf" data-title="Lecture slides — The Finance view · 3.3 MB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
             <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">The Finance view · 3.3 MB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/2%20Teaching%20note%202b%20-%20The_Finance_view.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/2%20Lecture%20SLIDES%20-%20the%20Finance%20view.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/2%20Teaching%20note%202b%20-%20The_Finance_view.pdf" data-pdf="pdf/2%20Teaching%20note%202b%20-%20The_Finance_view.pdf" data-title="Teaching note — The Finance view · 0.9 MB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
             <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">The Finance view · 0.9 MB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
+            
+          </a><a class="item-download" href="pdf/2%20Teaching%20note%202b%20-%20The_Finance_view.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
       </ul>
     </article>
 
@@ -515,20 +617,16 @@
       </div>
       <h2 class="card-title">Economic Nationalism</h2>
       <ul class="items">
-        <li>
-          <a class="item" href="pdf/3%20Lecture%20SLIDES%20-%20Economic%20nationalism.pdf" target="_blank" rel="noopener">
+        <li><a class="item" href="pdf/3%20Lecture%20SLIDES%20-%20Economic%20nationalism.pdf" data-pdf="pdf/3%20Lecture%20SLIDES%20-%20Economic%20nationalism.pdf" data-title="Lecture slides — Economic nationalism · 8.1 MB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
             <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Economic nationalism · 8.1 MB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/3%20Teaching%20note%20Economic_nationalism.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/3%20Lecture%20SLIDES%20-%20Economic%20nationalism.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/3%20Teaching%20note%20Economic_nationalism.pdf" data-pdf="pdf/3%20Teaching%20note%20Economic_nationalism.pdf" data-title="Teaching note — Economic nationalism · 168 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
             <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">Economic nationalism · 168 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
+            
+          </a><a class="item-download" href="pdf/3%20Teaching%20note%20Economic_nationalism.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
       </ul>
     </article>
 
@@ -539,20 +637,16 @@
       </div>
       <h2 class="card-title">Human Capitalism</h2>
       <ul class="items">
-        <li>
-          <a class="item" href="pdf/4%20lecture%20slides%20Human%20Capitalism.pdf" target="_blank" rel="noopener">
+        <li><a class="item" href="pdf/4%20lecture%20slides%20Human%20Capitalism.pdf" data-pdf="pdf/4%20lecture%20slides%20Human%20Capitalism.pdf" data-title="Lecture slides — Human Capitalism · 8.7 MB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
             <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Human Capitalism · 8.7 MB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/4%20acemoglu-restrepo-2019-automation-and-new-tasks-how-technology-displaces-and-reinstates-labor.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/4%20lecture%20slides%20Human%20Capitalism.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/4%20acemoglu-restrepo-2019-automation-and-new-tasks-how-technology-displaces-and-reinstates-labor.pdf" data-pdf="pdf/4%20acemoglu-restrepo-2019-automation-and-new-tasks-how-technology-displaces-and-reinstates-labor.pdf" data-title="Paper — Acemoglu &amp; Restrepo (2019) · Automation and new tasks · 686 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
             <span class="item-text"><span class="item-label">Paper</span><span class="item-meta">Acemoglu &amp; Restrepo (2019) · Automation and new tasks · 686 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
+            
+          </a><a class="item-download" href="pdf/4%20acemoglu-restrepo-2019-automation-and-new-tasks-how-technology-displaces-and-reinstates-labor.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
       </ul>
     </article>
 
@@ -563,27 +657,21 @@
       </div>
       <h2 class="card-title">Natural &amp; Social World</h2>
       <ul class="items">
-        <li>
-          <a class="item" href="pdf/5%20Lecture%205%20-%20Natural%20and%20social%20world.pdf" target="_blank" rel="noopener">
+        <li><a class="item" href="pdf/5%20Lecture%205%20-%20Natural%20and%20social%20world.pdf" data-pdf="pdf/5%20Lecture%205%20-%20Natural%20and%20social%20world.pdf" data-title="Lecture slides — Natural and social world · 11.0 MB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
             <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Natural and social world · 11.0 MB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/5%20Teaching_note___The_Noah_s_Ark_problem.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/5%20Lecture%205%20-%20Natural%20and%20social%20world.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/5%20Teaching_note___The_Noah_s_Ark_problem.pdf" data-pdf="pdf/5%20Teaching_note___The_Noah_s_Ark_problem.pdf" data-title="Teaching note — The Noah&rsquo;s Ark problem · 290 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
             <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">The Noah&rsquo;s Ark problem · 290 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/5%20Weitzman%201998%20-%20Noahs%20ark%20problem.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/5%20Teaching_note___The_Noah_s_Ark_problem.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/5%20Weitzman%201998%20-%20Noahs%20ark%20problem.pdf" data-pdf="pdf/5%20Weitzman%201998%20-%20Noahs%20ark%20problem.pdf" data-title="Paper — Weitzman (1998) · Noah&rsquo;s ark problem · 543 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
             <span class="item-text"><span class="item-label">Paper</span><span class="item-meta">Weitzman (1998) · Noah&rsquo;s ark problem · 543 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
+            
+          </a><a class="item-download" href="pdf/5%20Weitzman%201998%20-%20Noahs%20ark%20problem.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
       </ul>
     </article>
 
@@ -594,27 +682,21 @@
       </div>
       <h2 class="card-title">Capitalism &amp; the Future of Democracy</h2>
       <ul class="items">
-        <li>
-          <a class="item" href="pdf/6%20Lecture%206%20-%20capitalism%20and%20the%20future%20of%20democracy.pdf" target="_blank" rel="noopener">
+        <li><a class="item" href="pdf/6%20Lecture%206%20-%20capitalism%20and%20the%20future%20of%20democracy.pdf" data-pdf="pdf/6%20Lecture%206%20-%20capitalism%20and%20the%20future%20of%20democracy.pdf" data-title="Lecture slides — Capitalism &amp; democracy · 5.5 MB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9h18"/></svg></span>
             <span class="item-text"><span class="item-label">Lecture slides</span><span class="item-meta">Capitalism &amp; democracy · 5.5 MB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/6_Teaching_note___capitalism_and_democracy.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/6%20Lecture%206%20-%20capitalism%20and%20the%20future%20of%20democracy.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/6_Teaching_note___capitalism_and_democracy.pdf" data-pdf="pdf/6_Teaching_note___capitalism_and_democracy.pdf" data-title="Teaching note — Capitalism and democracy · 177 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg></span>
             <span class="item-text"><span class="item-label">Teaching note</span><span class="item-meta">Capitalism and democracy · 177 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a class="item" href="pdf/6%20Rodrik%20JEP%202010-how-far-will-international-economic-integration-go.pdf" target="_blank" rel="noopener">
+            
+          </a><a class="item-download" href="pdf/6_Teaching_note___capitalism_and_democracy.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
+        <li><a class="item" href="pdf/6%20Rodrik%20JEP%202010-how-far-will-international-economic-integration-go.pdf" data-pdf="pdf/6%20Rodrik%20JEP%202010-how-far-will-international-economic-integration-go.pdf" data-title="Paper — Rodrik (2010) · How far will international integration go · 126 KB">
             <span class="item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg></span>
             <span class="item-text"><span class="item-label">Paper</span><span class="item-meta">Rodrik (2010) · How far will international integration go · 126 KB</span></span>
-            <span class="item-arrow">→</span>
-          </a>
-        </li>
+            
+          </a><a class="item-download" href="pdf/6%20Rodrik%20JEP%202010-how-far-will-international-economic-integration-go.pdf" download title="Download" onclick="event.stopPropagation();"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></a></li>
       </ul>
     </article>
 
@@ -650,5 +732,64 @@
     }
   })();
 </script>
+
+<div class="modal" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+  <div class="modal-bar">
+    <div class="modal-title" id="pdfModalTitle">Document</div>
+    <div class="modal-actions">
+      <a class="modal-btn" id="pdfModalOpenNew" href="#" target="_blank" rel="noopener" title="Open in new tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M14 5h5v5M19 5L10 14M19 14v5H5V5h5"/></svg>
+        New tab
+      </a>
+      <a class="modal-btn" id="pdfModalDownload" href="#" download title="Download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+        Download
+      </a>
+      <button class="modal-btn modal-close" id="pdfModalClose" aria-label="Close">×</button>
+    </div>
+  </div>
+  <iframe class="modal-frame" id="pdfModalFrame" title="PDF preview"></iframe>
+</div>
+
+<script>
+  (function() {
+    var modal = document.getElementById('pdfModal');
+    var frame = document.getElementById('pdfModalFrame');
+    var titleEl = document.getElementById('pdfModalTitle');
+    var openNew = document.getElementById('pdfModalOpenNew');
+    var downloadBtn = document.getElementById('pdfModalDownload');
+    var closeBtn = document.getElementById('pdfModalClose');
+
+    function openPdf(href, title) {
+      frame.src = href;
+      titleEl.textContent = title || 'Document';
+      openNew.href = href;
+      downloadBtn.href = href;
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+    }
+    function closePdf() {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      frame.src = 'about:blank';
+    }
+
+    document.querySelectorAll('a.item[data-pdf]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        openPdf(a.getAttribute('data-pdf'), a.getAttribute('data-title'));
+      });
+    });
+
+    closeBtn.addEventListener('click', closePdf);
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closePdf();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closePdf();
+    });
+  })();
+</script>
+
 </body>
 </html>
