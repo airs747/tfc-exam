@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# This site contains course material intended for enrolled students only.
+# Please do not index or archive any content.
