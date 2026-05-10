@@ -510,8 +510,12 @@
     width: 36px;
     height: 36px;
     padding: 0;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 1;
+    letter-spacing: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   .modal-frame {
     flex: 1;
@@ -783,6 +787,19 @@
       downloadBtn.href = href;
       modal.classList.add('open');
       document.body.classList.add('modal-open');
+      // After the PDF loads, also listen for Escape inside the iframe (same-origin)
+      frame.onload = function() {
+        try {
+          var doc = frame.contentDocument;
+          if (doc) {
+            doc.addEventListener('keydown', function(e) {
+              if (e.key === 'Escape') closePdf();
+            });
+          }
+        } catch (err) {
+          // cross-origin, can't attach; parent listener still works when focus is outside iframe
+        }
+      };
     }
     function closePdf() {
       modal.classList.remove('open');
